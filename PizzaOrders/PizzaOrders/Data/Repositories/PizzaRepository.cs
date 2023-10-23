@@ -13,7 +13,7 @@ namespace PizzaOrders.Data.Repositories
     public class PizzaRepository : IPizzaRepository
     {
         private readonly PizzaOrdersDbContext _context;
-        public PizzaRepository(PizzaOrdersDbContext pizzaOrdersDbContext) 
+        public PizzaRepository(PizzaOrdersDbContext pizzaOrdersDbContext)
         {
             _context = pizzaOrdersDbContext;
         }

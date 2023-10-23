@@ -87,7 +87,7 @@ namespace PizzaOrders.Controllers
         {
             var orders = await _orderRepository.GetManyAsync();
             var ordersDto = new List<SecondOrderDto>();
-            foreach (var order in orders) 
+            foreach (var order in orders)
             {
                 var pizza = await _pizzaRepository.GetAsync(order.PizzaId);
                 var toppingNameList = new List<string>();

@@ -6,7 +6,6 @@ namespace PizzaOrders.Data.Entities
     {
         [Key]
         public Guid Id { get; set; }
-
         public Guid PizzaId { get; set; }
     }
 }

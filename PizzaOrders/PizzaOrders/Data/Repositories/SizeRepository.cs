@@ -12,7 +12,7 @@ namespace PizzaOrders.Data.Repositories
     {
         private readonly PizzaOrdersDbContext _context;
 
-        public SizeRepository(PizzaOrdersDbContext context) 
+        public SizeRepository(PizzaOrdersDbContext context)
         {
             _context = context;
             SeedData.SeedData.SeedSizesAsync(_context);

@@ -13,7 +13,7 @@ namespace PizzaOrders.Controllers
     {
         private readonly ISizeRepository _sizeRepository;
 
-        public SizeController(ISizeRepository sizeRepository) 
+        public SizeController(ISizeRepository sizeRepository)
         {
             _sizeRepository = sizeRepository;
         }

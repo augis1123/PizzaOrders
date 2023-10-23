@@ -27,12 +27,12 @@ namespace PizzaOrders.Controllers
         public async Task<ActionResult<IEnumerable<SecondPizzaDto>>> GetMany()
         {
             var pizzas = await _pizzasRepository.GetManyAsync();
-            var Pizzas =new List<SecondPizzaDto>();
+            var Pizzas = new List<SecondPizzaDto>();
             foreach (var item in pizzas)
             {
                 var toppingNameList = new List<string>();
                 var selectedToppings = await _selectedToppingRepository.GetManyByPizzaAsync(item.Id);
-                foreach (var selectedtopping in selectedToppings) 
+                foreach (var selectedtopping in selectedToppings)
                 {
                     var topping = await _toppingRepository.GetAsync(selectedtopping.ToppingId);
                     if (topping != null)
@@ -48,20 +48,6 @@ namespace PizzaOrders.Controllers
                 Pizzas.Add(newpizza);
             }
             return Pizzas;
-        }
-
-        [HttpDelete]
-        [Route("{id}")]
-        public async Task<ActionResult> Delete(Guid id)
-        {
-            var pizza = await _pizzasRepository.GetAsync(id);
-            if (pizza == null) 
-            {
-                return NotFound(); 
-            }
-
-            await _pizzasRepository.DeleteAsync(pizza);
-            return NoContent();
         }
 
         [HttpPost]
@@ -103,7 +89,7 @@ namespace PizzaOrders.Controllers
 
         [HttpPut]
         [Route("calculatePrice")]
-        public async Task<ActionResult<double>> CalculatePrice(CalculatePricePizzaDto pizza) 
+        public async Task<ActionResult<double>> CalculatePrice(CalculatePricePizzaDto pizza)
         {
             try
             {
@@ -117,7 +103,7 @@ namespace PizzaOrders.Controllers
                 {
                     foreach (var item in pizza.Toppings)
                     {
-                        var topping = await _toppingRepository.GetAsync (item);
+                        var topping = await _toppingRepository.GetAsync(item);
                         if (topping == null)
                         {
                             return NotFound();
@@ -131,7 +117,7 @@ namespace PizzaOrders.Controllers
                 }
                 return Ok(price);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 return BadRequest();
             }
