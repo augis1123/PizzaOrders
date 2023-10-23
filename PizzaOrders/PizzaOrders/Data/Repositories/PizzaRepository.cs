@@ -3,17 +3,17 @@ using PizzaOrders.Data.Entities;
 
 namespace PizzaOrders.Data.Repositories
 {
-    public interface IPizzassRepository
+    public interface IPizzaRepository
     {
         Task<Pizza?> GetAsync(Guid PizzaId);
         Task<IReadOnlyList<Pizza>> GetManyAsync();
         Task CreateAsync(Pizza pizza);
         Task DeleteAsync(Pizza pizza);
     }
-    public class PizzasRepository : IPizzassRepository
+    public class PizzaRepository : IPizzaRepository
     {
         private readonly PizzaOrdersDbContext _context;
-        public PizzasRepository(PizzaOrdersDbContext pizzaOrdersDbContext) 
+        public PizzaRepository(PizzaOrdersDbContext pizzaOrdersDbContext) 
         {
             _context = pizzaOrdersDbContext;
         }

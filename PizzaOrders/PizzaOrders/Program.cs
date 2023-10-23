@@ -2,7 +2,17 @@ using PizzaOrders.Data;
 using PizzaOrders.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000") // add the allowed origins
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                      });
+});
 // Add services to the container.
 builder.Services.AddDbContext<PizzaOrdersDbContext>();
 builder.Services.AddControllers();
@@ -10,7 +20,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IPizzassRepository, PizzasRepository>();
+builder.Services.AddTransient<IPizzaRepository, PizzaRepository>();
+builder.Services.AddTransient<ISizeRepository, SizeRepository>();
+builder.Services.AddTransient<IToppingRepository, ToppingRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<ISelectedToppingRepository, SelectedToppingRepository>();
 
 var app = builder.Build();
 
@@ -27,5 +41,8 @@ app.UseAuthorization();
 
 app.UseRouting();
 app.MapControllers();
+
+app.UseCors(MyAllowSpecificOrigins);
+app.UseCors("AllowAll");
 
 app.Run();

@@ -1,14 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace PizzaOrders.Data.Entities
 {
-    public class Pizza
+    public class Topping
     {
         [Key]
         public Guid Id { get; set; }
 
-        public Guid SizeId { get; internal set; }
-
-        public double Price { get; set; }
+        [Required]
+        public string Name { get; set; }
     }
 }

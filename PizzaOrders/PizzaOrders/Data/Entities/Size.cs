@@ -2,13 +2,16 @@
 
 namespace PizzaOrders.Data.Entities
 {
-    public class Pizza
+    public class Size
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id {get; set;}
 
-        public Guid SizeId { get; internal set; }
+        [Required]
+        public string Name { get; set;}
 
+        [Required]
         public double Price { get; set; }
+
     }
 }
